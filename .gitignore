@@ -1,0 +1,15 @@
+*
+
+
+!.gitignore
+
+
+!*/
+
+
+!*.cpp
+!**/*.sv
+!**/*.txt
+
+!README.md
+!README.*
