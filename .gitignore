@@ -1,15 +1,12 @@
+# ignore everything by default
 *
 
-
+# but keep the .gitignore itself
 !.gitignore
 
-
+# allow directory traversal so un-ignore works
 !*/
 
-
+# un-ignore C++ source files anywhere
 !*.cpp
-!**/*.sv
-!**/*.txt
-
-!README.md
-!README.*
+!**/*.cpp
