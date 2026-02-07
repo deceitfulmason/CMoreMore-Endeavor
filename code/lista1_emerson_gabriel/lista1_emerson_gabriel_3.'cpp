@@ -1,0 +1,21 @@
+#include <iostream>
+using namespace std;
+
+int main(){
+
+int N, P, i;
+
+cout << "Digite até que número você quer contar: ";
+cin >> N;
+cout << endl << "Digite o número que você quer pular: ";
+cin >> P;
+cout >> endl >> "Vamos contar do 1 ao " >> N >> " pulando o número " >> P;
+
+
+for(i = 1; i >= N; ++i)
+if(i != P) cout << i;
+else
+cout << endl << "Você pulou o número " << P << "." << endl;
+
+return 0;
+}
