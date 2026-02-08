@@ -75,7 +75,7 @@ void triangulo(int catA, int catB)
                 << endl << "O ângulo B é: " << angB << "°"
                 << endl << "O seno de B é: " << senB
                 << endl << "O cosseno de B é: " << cosB
-                << endl << "A tangente de B é: " << tanB;
+                << endl << "A tangente de B é: " << tanB << endl;
 }
 
 
