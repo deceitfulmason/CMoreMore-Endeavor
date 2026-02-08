@@ -1,6 +1,9 @@
 #include <iostream>
 #include <cmath>
 
+const double PI = 3.141592653589793;
+
+
 using namespace std;
 
 void rquadrada();
@@ -54,9 +57,8 @@ void triangulo(int catA, int catB)
             float radA = atan2(catA, catB);
             float radB = atan2(catB, catA);
 
-            float angA = radA * 180 / M_PI;
-            float angB = radB * 180 / M_PI;
-
+            float angA = radA * 180 / PI;
+            float angB = radB * 180 / PI;
             float senA = catA / hip;
             float cosA = catB / hip;
             float tanA = (float)catA / catB;
