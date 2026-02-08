@@ -8,15 +8,15 @@ void triangulo(int, int);
 
 int main(){
 
-    int catA, catB;
-    cout << endl;
-    rquadrada();
+        int catA, catB;
+        cout << endl;
+        rquadrada();
 
-    cout << endl << "Agora, iremos calcular um triângulo, digite o cateto A: ";
-    cin >> catA;
-    cout << "Digite o cateto B: ";
-    cin >> catB;
-    triangulo(catA, catB);
+        cout << endl << "Agora, iremos calcular um triângulo, digite o cateto A: ";
+        cin >> catA;
+        cout << "Digite o cateto B: ";
+        cin >> catB;
+        triangulo(catA, catB);
 
 
     return 0;
@@ -29,16 +29,16 @@ int main(){
 
 void rquadrada()
 {
-    cout << "A raiz quadrada de todos os números pares entre 0 e 100 são:" << endl;
+            cout << "A raiz quadrada de todos os números pares entre 0 e 100 são:" << endl;
 
-    for (int i = 0; i <= 100; ++i)
-    {
-        if(i % 2 == 0)
-            cout << "A raiz quadrada de " << i << " é: " << sqrt(i) << endl;
-        else {
-            continue;
-        }
-    }
+            for (int i = 0; i <= 100; ++i)
+            {
+                if(i % 2 == 0)
+                    cout << "A raiz quadrada de " << i << " é: " << sqrt(i) << endl;
+                else {
+                    continue;
+                }
+            }
 }
 
 
@@ -48,20 +48,35 @@ void rquadrada()
 
 void triangulo(int catA, int catB)
 {
-    float hip = hypot(catA, catB);
-    float area = (catA * catB) / 2.0;
+            float hip = hypot(catA, catB);
+            float area = (catA * catB) / 2.0;
 
-    float radA = atan2(catA, catB);
-    float radB = atan2(catB, catA);
+            float radA = atan2(catA, catB);
+            float radB = atan2(catB, catA);
 
-    float angA = radA * 180 / M_PI;
-    float angB = radB * 180 / M_PI;
+            float angA = radA * 180 / M_PI;
+            float angB = radB * 180 / M_PI;
 
-    cout << "A hipotenusa é: " << hip
-         << endl << "A área é: " << area
-         << endl << "O perímetro é: " << catA + catB + hip
-         << endl << "O ângulo A é: " << angA << "°"
-         << endl << "O ângulo B é: " << angB << "°";
+            float senA = catA / hip;
+            float cosA = catB / hip;
+            float tanA = (float)catA / catB;
+
+            float senB = catB / hip;
+            float cosB = catA / hip;
+            float tanB = (float)catB / catA;
+
+            cout << "A hipotenusa é: " << hip
+                << endl << "A área é: " << area
+                << endl << "O perímetro é: " << catA + catB + hip
+                << endl << "O ângulo A é: " << angA << "°"
+                << endl << "O seno de A é: " << senA
+                << endl << "O cosseno de A é: " << cosA
+                << endl << "A tangente de A é: " << tanA
+                << endl << "O ângulo B é: " << angB << "°"
+                << endl << "O seno de B é: " << senB
+                << endl << "O cosseno de B é: " << cosB
+                << endl << "A tangente de B é: " << tanB;
 }
+
 
 
