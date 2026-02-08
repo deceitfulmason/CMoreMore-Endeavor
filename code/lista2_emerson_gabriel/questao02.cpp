@@ -9,9 +9,8 @@ void triangulo(int, int);
 int main(){
 
     int catA, catB;
-    double raiz = 0;
     cout << endl;
-    rquadrada(raiz);
+    rquadrada();
 
     cout << endl << "Agora, iremos calcular um triângulo, digite o cateto A: ";
     cin >> catA;
@@ -28,7 +27,7 @@ int main(){
 // Questão 2a
 //===============================================================
 
-void rquadrada(double raiz)
+void rquadrada()
 {
     cout << "A raiz quadrada de todos os números pares entre 0 e 100 são:" << endl;
 
