@@ -6,7 +6,7 @@ void mostrarBinario(int);
 
 void impar(int);
 
-void semiPiramide(char, int);
+void semiPiramide(int n, char a);
 
 int f(int n);
 
@@ -53,7 +53,7 @@ int main(){
 
 
 	//QUESTAO 4
-	cout << endl << "f(n): " << f(n);
+	cout << endl << "f(n): " << f(n) << endl;
 
 
 	//QUESTAO 5
@@ -83,7 +83,6 @@ void impar(int n)
 		cout << endl << n << " eh impar.";
 
 
-
 }
 
 //QUESTAO 4
@@ -97,10 +96,10 @@ return n*n + 5 * n + 2;
 
 //QUESTAO 5
 
-void semiPiramide(char a, int n){
+void semiPiramide(int n, char a){
 
-for (int a = 1; a <= n; ++a){
-	for (int i = 1; i <= a; ++ i){
+for (int linha = 1; linha <= n; ++linha){
+	for (int col = 1; col <= linha; ++ col){
 		cout << a;
 }
 
