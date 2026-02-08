@@ -1,6 +1,5 @@
 #include <iostream>
 #include <cmath>
-#include <string>
 
 using namespace std;
 
@@ -20,7 +19,7 @@ int main(){
     int ang = 0;
 
     cout << "Digite o seu nome completo: ";
-    getline(cin, nome_completo);  // agora lê nome completo
+    getline(cin, nome_completo); 
     cout << "Seu nome é: " << nome_completo << endl;
 
     cout << "Digite a sua idade: ";
