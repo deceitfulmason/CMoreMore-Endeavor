@@ -3,7 +3,7 @@
 
 using namespace std;
 
-void rquadrada(double);
+void rquadrada();
 void triangulo(int, int);
 
 int main(){
