@@ -36,7 +36,6 @@ void rquadrada()
         if(i % 2 == 0)
             cout << "A raiz quadrada de " << i << " é: " << sqrt(i) << endl;
         else {
-            cout << i << " não é par." << endl;
             continue;
         }
     }
