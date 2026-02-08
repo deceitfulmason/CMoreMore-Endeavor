@@ -6,6 +6,8 @@ void mostrarBinario(int);
 
 void impar(int);
 
+void semiPiramide(char, int);
+
 int f(int n);
 
 int main(){
@@ -24,6 +26,7 @@ int main(){
     if((a >= 65 && a <= 90) || (a >= 97 && a <= 122))
         cout << endl << a << " eh uma letra" << endl;
 
+	//QUESTAO 2
 
     do {
         cout << endl << "Digite um numero inteiro entre 1 e 8: ";
@@ -36,7 +39,7 @@ int main(){
     mostrarBinario(ascii);
     cout << " ou " << ascii << " em ascii. ";
 
-    int mascara = 0b00000001 << (n - 1);  // Máscara para pegar o n-ésimo bit
+    int mascara = 0b00000001 << (n - 1);  // Mascara para pegar o n-esimo bit
     int bit;
     if (ascii & mascara)
         bit = 1;
@@ -45,10 +48,17 @@ int main(){
 
     cout << "O " << n << "-esimo bit de " << a << " eh: " << bit << endl;
 
-
+	//QUESTAO 3
 	impar(n);
 
+
+	//QUESTAO 4
 	cout << endl << "f(n): " << f(n);
+
+
+	//QUESTAO 5
+	semiPiramide(n, a);
+
 
     return 0;
 }
@@ -81,4 +91,21 @@ void impar(int n)
 int f(int n)
 {
 return n*n + 5 * n + 2;
+}
+
+
+
+//QUESTAO 5
+
+void semiPiramide(char a, int n){
+
+for (int a = 1; a <= n; ++a){
+	for (int i = 1; i <= a; ++ i){
+		cout << a;
+}
+
+
+	cout << endl;
+}
+
 }
