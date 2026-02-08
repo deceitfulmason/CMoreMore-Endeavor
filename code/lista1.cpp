@@ -35,7 +35,6 @@ int main(){
     cout << "Digite o cateto B: ";
     cin >> catB;
     triangulo(catA, catB);
-
     cout << endl << "Diga o raio de um círculo: ";
     cin >> raioC;
     circulo(raioC);
