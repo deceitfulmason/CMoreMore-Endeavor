@@ -1,15 +1,19 @@
 #include <iostream>
 using namespace std;
 
-void menu();
+void mostrarMenu();
 
 int main() {
-    int seletor;
+    int seletor = -1;
 
-    menu();
+
+while(true){
+   mostrarMenu();
 	cin >> seletor;
 	if(seletor >= 1 || seletor <= 6) cout << "\nEscolha válida!";
 	else cout << "\nEscolha inválida, escolha um nome entre 1 e 6!";
+}
+
 
     switch (seletor) {
         case 1:
@@ -33,7 +37,7 @@ int main() {
 	case 6:
 
         default:
-            cout << "\nEscolha inválida, escolha um número entre 1 e 6!\n";
+            cout << "\nEscolha inválida, escolha um número entre 0 e 6!\n";
             break;
     }
 
@@ -43,16 +47,16 @@ int main() {
 //==============================
 //======= Funcao Menu ==========
 //==============================
-void menu() {
-    cout << "╔════════════════════════╗\n";
-    cout << "║   Bem-vindo ao menu    ║\n";
-    cout << "║  Selecione a sua opcao ║\n";
-    cout << "║   [1]                  ║\n";
-    cout << "║   [2]                  ║\n";
-    cout << "║   [3]                  ║\n";
-    cout << "║   [4]                  ║\n";
-    cout << "║   [5]                  ║\n";
-    cout << "║   [6]                  ║\n";
-    cout << "╚════════════════════════╝\n";
+void mostrarMenu() {
+    cout << "\n╔════════════════════════════════╗\n";
+    cout << "║        MENU PRINCIPAL          ║\n";
+    cout << "╠════════════════════════════════╣\n";
+    cout << "║ 1 - Sequencia de letras        ║\n";
+    cout << "║ 2 - Somatorio (k + 33)         ║\n";
+    cout << "║ 3 - Raiz quadrada em [a,b]     ║\n";
+    cout << "║ 4 - Padrao numerico/asteriscos ║\n";
+    cout << "║ 5 - Valores de f(x) (float)    ║\n";
+    cout << "║ 6 - Zeros de equacao 2º grau   ║\n";
+    cout << "║ 0 - Sair                       ║\n";
+    cout << "╚════════════════════════════════╝\n";
 }
-
