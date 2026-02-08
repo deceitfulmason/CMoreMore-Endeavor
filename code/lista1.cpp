@@ -20,7 +20,6 @@ int main(){
     int ang = 0;
 
     cout << "Digite o seu nome completo: ";
-    cin.ignore();                 // impede bug no getline
     getline(cin, nome_completo);  // agora lê nome completo
     cout << "Seu nome é: " << nome_completo << endl;
 
