@@ -61,7 +61,6 @@ bool continuar()
     char op;
     cout << "\nDigite S para sair ou qualquer outra tecla para continuar: ";
     cin >> op;
-    cin.ignore();
     return (op != 'S' && op != 's');
 }
 
