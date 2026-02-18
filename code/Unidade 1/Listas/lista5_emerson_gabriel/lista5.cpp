@@ -6,183 +6,290 @@ using namespace std;
 class cidadaos
 {
 private:
-        string nomeCompleto, cpf;
-        int idade;
-        bool estadoCivil; // 1 se casado 0 se solteiro
-        double altura, peso, renda;
+    string nomeCompleto, cpf;
+    int idade;
+    bool estadoCivil; // 1 se casado 0 se solteiro
+    double altura, peso, renda;
 
 public:
-        void setarNome(string nome)
-        {
-                nomeCompleto = nome;
-        }
+    void setarNome(string nome) { nomeCompleto = nome; }
+    void setarIdade(int age) { idade = age; }
+    void setarEstado(bool casado) { estadoCivil = casado; }
+    void setarAltura(double height) { altura = height; }
+    void setarPeso(double weight) { peso = weight; }
+    void setarRenda(double income) { renda = income; }
 
-        void setarIdade(int age) { idade = age; }
-
-        void setarEstado(bool casado) { estadoCivil = casado; }
-
-        void setarAltura(double height) { altura = height; }
-
-        void setarPeso(double weight) { peso = weight; }
-
-        void setarRenda(double income) { renda = income; }
+    string getNome() { return nomeCompleto; }
+    int getIdade() { return idade; }
+    bool getCasado() { return estadoCivil; }
+    double getHeight() { return altura; }
+    double getWeight() { return peso; }
+    double getIncome() { return renda; }
 };
 
-void mostrarMenu(), opcao1(cidadaos pessoas[], int &cadastros), opcao2(), opcao3(), opcao4(), opcaoInvalida(), opcao0(), retornarMenu();
+void mostrarMenu(), opcao1(cidadaos pessoas[], int &cadastros), opcao2(cidadaos pessoas[], int cadastros), opcao3(), opcao4(), opcaoInvalida(), opcao0(), retornarMenu();
 
 int main()
 {
+    cidadaos pessoas[10];
+    int cadastros = 0;
+    int seletor = 0;
 
-        cidadaos pessoas[10];
-        int cadastros = 0;
+    do
+    {
+        mostrarMenu();
+        cin >> seletor;
 
-        int seletor = 0;
-
-        do
+        switch (seletor)
         {
-                mostrarMenu();
-                cin >> seletor;
-                switch (seletor)
-                {
-                case 1:
-                        opcao1(pessoas, cadastros);
-                        break;
-                case 2:
-                        opcao2();
-                        break;
-                case 3:
-                        opcao3();
-                        break;
-                case 4:
-                        opcao4();
-                        break;
-                case 0:
-                        opcao0();
-                        break;
-                default:
-                        opcaoInvalida();
-                        break;
-                }
-        } while (seletor != 0);
+        case 1:
+            opcao1(pessoas, cadastros);
+            break;
+        case 2:
+            opcao2(pessoas, cadastros);
+            break;
+        case 3:
+            opcao3();
+            break;
+        case 4:
+            opcao4();
+            break;
+        case 0:
+            opcao0();
+            break;
+        default:
+            opcaoInvalida();
+            break;
+        }
 
-        return 0;
-};
+    } while (seletor != 0);
 
-
+    return 0;
+}
 
 void opcao1(cidadaos pessoas[], int &cadastros)
 {
+    int quantidade = 0;
 
-        int quantidade = 0;
-
-        cout << endl << "Quantas pessoas deseja cadastrar?";
+    do
+    {
+        cout << endl << "Quantas pessoas deseja cadastrar? ";
         cin >> quantidade;
-        cin.ignore();
 
-        for (int i = 0; i < quantidade; i++)
+        if (quantidade < 0 || quantidade > 10 - cadastros)
+            cout << "Quantidade de pessoas invalidas!" << endl;
+
+    } while (quantidade < 0 || quantidade > 10 - cadastros);
+
+    for (int i = 0; i < quantidade; i++)
+    {
+        cin.ignore(); // limpar ENTER antes do getline
+
+        string nome;
+        cout << "Digite o nome completo da pessoa " << cadastros + 1 << ": ";
+        getline(cin, nome);
+        pessoas[cadastros].setarNome(nome);
+
+        int age;
+        do
         {
-                string nome;
-                        cout << "Digite o nome completo da pessoa " << cadastros + 1 << ": ";
-                        getline(cin, nome);
-                        pessoas[cadastros].setarNome(nome);
-                int age;
-                        cout << "Digite a idade da pessoa " << cadastros + 1 << ": ";
-                        cin >> age;
-                        pessoas[cadastros].setarIdade(age);
-                bool estado;
-                        cout << "Digite o estado civil da pessoa " << cadastros + 1 << "(0 para solteiro, 1 para casado): ";
-                        cin >> estado;
-                        pessoas[cadastros].setarEstado(estado);
-                double height;
-                        cout << "Digite a altura da pessoa " << cadastros + 1 << ": ";
-                        cin >> height;
-                        pessoas[cadastros].setarAltura(height);
-                double weight;
-                        cout << "Digite o peso da pessoa " << cadastros + 1 << ": ";
-                        cin >> weight;
-                        pessoas[cadastros].setarPeso(weight);
+            cout << "Digite a idade da pessoa " << cadastros + 1 << ": ";
+            cin >> age;
 
-                
-                
-                        double income;
+            if (age <= 0 || age >= 123)
+                cout << "Idade invalida!" << endl;
 
-                cadastros++;
+        } while (age <= 0 || age >= 123);
+
+        pessoas[cadastros].setarIdade(age);
+
+        int estado;
+        do
+        {
+            cout << "Digite o estado civil da pessoa "
+                 << cadastros + 1
+                 << " (0 solteiro, 1 casado): ";
+            cin >> estado;
+
+            if (estado != 0 && estado != 1)
+                cout << "Valor invalido!" << endl;
+
+        } while (estado != 0 && estado != 1);
+
+        pessoas[cadastros].setarEstado((bool)estado);
+
+        double height;
+        do
+        {
+            cout << "Digite a altura da pessoa "
+                 << cadastros + 1
+                 << " (em metros): ";
+            cin >> height;
+
+            if (height <= 0.4 || height >= 2.72)
+                cout << "Valor invalido!" << endl;
+
+        } while (height <= 0.4 || height >= 2.72);
+
+        pessoas[cadastros].setarAltura(height);
+
+        double weight;
+        do
+        {
+            cout << "Digite o peso da pessoa "
+                 << cadastros + 1 << ": ";
+            cin >> weight;
+
+            if (weight < 2.7 || weight > 635)
+                cout << "Valor invalido!" << endl;
+
+        } while (weight < 2.7 || weight > 635);
+
+        pessoas[cadastros].setarPeso(weight);
+
+        double income;
+        do
+        {
+            cout << "Digite a renda da pessoa "
+                 << cadastros + 1 << ": ";
+            cin >> income;
+
+            if (income <= 0)
+                cout << "Digite um valor maior que 0!" << endl;
+
+        } while (income <= 0);
+
+        pessoas[cadastros].setarRenda(income);
+
+        cadastros++;
+    }
+
+    retornarMenu();
+}
+
+void opcao2(cidadaos pessoas[], int cadastros)
+{
+    int escolha;
+
+    do
+    {
+        cout << endl;
+        cout << "===== VISUALIZAR DADOS =====" << endl;
+        cout << "(1) Nome" << endl;
+        cout << "(2) Idade" << endl;
+        cout << "(3) Estado civil" << endl;
+        cout << "(4) Altura" << endl;
+        cout << "(5) Peso" << endl;
+        cout << "(6) Renda" << endl;
+        cout << "(0) Voltar ao menu principal" << endl;
+        cout << "Escolha uma opcao: ";
+
+        cin >> escolha;
+
+        if (cadastros == 0 && escolha != 0)
+        {
+            cout << endl << "Nenhuma pessoa cadastrada." << endl;
+            continue;
         }
 
-/*
-       class cidadaos
-{
-private:
-        string nomeCompleto, cpf;
-        int idade;
-        bool estadoCivil; // 1 se casado 0 se solteiro
-        double altura, peso, renda;
-
-public:
-        void setarNome(string nome)
+        switch (escolha)
         {
-                nomeCompleto = nome;
+        case 1:
+            cout << endl << "Mostrar nomes" << endl;
+            for (int i = 0; i < cadastros; i++)
+                cout << i + 1 << " - " << pessoas[i].getNome() << endl;
+            break;
+
+        case 2:
+            cout << endl << "Mostrar idades" << endl;
+            for (int i = 0; i < cadastros; i++)
+                cout << i + 1 << " - " << pessoas[i].getIdade() << endl;
+            break;
+
+        case 3:
+            cout << endl << "Mostrar estados civis" << endl;
+            for (int i = 0; i < cadastros; i++)
+            {
+                cout << i + 1 << " - ";
+                if (pessoas[i].getCasado())
+                    cout << "Casado";
+                else
+                    cout << "Solteiro";
+                cout << endl;
+            }
+            break;
+
+        case 4:
+            cout << endl << "Mostrar alturas" << endl;
+            for (int i = 0; i < cadastros; i++)
+                cout << i + 1 << " - " << pessoas[i].getHeight() << endl;
+            break;
+
+        case 5:
+            cout << endl << "Mostrar pesos" << endl;
+            for (int i = 0; i < cadastros; i++)
+                cout << i + 1 << " - " << pessoas[i].getWeight() << endl;
+            break;
+
+        case 6:
+            cout << endl << "Mostrar rendas" << endl;
+            for (int i = 0; i < cadastros; i++)
+                cout << i + 1 << " - " << pessoas[i].getIncome() << endl;
+            break;
+
+        case 0:
+            cout << endl << "Retornando ao menu principal..." << endl;
+            break;
+
+        default:
+            cout << endl << "Opcao invalida!" << endl;
+            break;
         }
 
-        void setarIdade(int age) { idade = age; }
+    } while (escolha != 0);
 
-        void setarEstado(bool casado) { estadoCivil = casado; }
-
-        void setarAltura(double height) { altura = height; }
-
-        void setarPeso(double weight) { peso = weight; }
-
-        void setarRenda(double income) { renda = income; }
-}; */
+    retornarMenu();
+}
 
 
+    
 
-
-        retornarMenu();
-};
-
-void opcao2()
-{
-        cout << "Vc escolheu a opcao 2";
-        retornarMenu();
-};
 
 void opcao3()
 {
-        cout << "Vc escolheu a opcao 3";
-        retornarMenu();
-};
+    cout << "Vc escolheu a opcao 3" << endl;
+    retornarMenu();
+}
 
 void opcao4()
 {
-        cout << "Vc escolheu a opcao 4";
-        retornarMenu();
-};
+    cout << "Vc escolheu a opcao 4" << endl;
+    retornarMenu();
+}
 
 void opcao0()
 {
-        cout << endl
-             << "Saindo do programa..." << endl;
+    cout << endl << "Saindo do programa..." << endl;
 }
 
 void mostrarMenu()
 {
-        cout << "Bem-vindo, selecione uma opcao" << endl
-             << "(1) Cadastramento" << endl
-             << "(2) Ver dados"
-             << endl
-             << "(3) Media e desvio padrao" << endl
-             << "(4) Calculo de IMC" << endl
-             << "(0) Sair do programa" << endl;
-};
+    cout << endl;
+    cout << "===== ESCOLHA UMA OPCAO =====" << endl
+         << "(1) Cadastramento" << endl
+         << "(2) Ver dados" << endl
+         << "(3) Media e desvio padrao" << endl
+         << "(4) Calculo de IMC" << endl
+         << "(0) Sair do programa" << endl;
+}
+
 
 void opcaoInvalida()
 {
-        cout << endl
-             << "Opcao invalida, digite um numero entre 0 e 4!";
+    cout << "Opcao invalida, digite um numero entre 0 e 4!" << endl;
 }
 
 void retornarMenu()
 {
-        cout << "Operacao realizada!!! Retornando ao menu..." << endl;
+    cout << "Operacao realizada! Retornando ao menu..." << endl;
 }
