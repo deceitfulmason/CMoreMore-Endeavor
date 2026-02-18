@@ -8,26 +8,55 @@ class cidadaos
 private:
     string nomeCompleto, cpf;
     int idade;
-    bool estadoCivil; // 1 se casado 0 se solteiro
+    bool estadoCivil;
     double altura, peso, renda;
 
 public:
+    // CONSTRUTOR
+    cidadaos()
+    {
+        nomeCompleto = "Nao informado";
+        cpf = "00000000000";
+        idade = 0;
+        estadoCivil = false;
+        altura = 0.0;
+        peso = 0.0;
+        renda = 0.0;
+
+        cout << "Objeto pessoa criado com valores padrao." << endl;
+    }
+
+    // DESTRUTOR
+    ~cidadaos()
+    {
+        cout << "Pessoa descadastrada." << endl;
+    }
+
     void setarNome(string nome) { nomeCompleto = nome; }
+    void setarCpf(string documento) { cpf = documento; }
     void setarIdade(int age) { idade = age; }
     void setarEstado(bool casado) { estadoCivil = casado; }
     void setarAltura(double height) { altura = height; }
     void setarPeso(double weight) { peso = weight; }
     void setarRenda(double income) { renda = income; }
 
-    string getNome() { return nomeCompleto; }
-    int getIdade() { return idade; }
-    bool getCasado() { return estadoCivil; }
-    double getHeight() { return altura; }
-    double getWeight() { return peso; }
-    double getIncome() { return renda; }
+    string getNome() const { return nomeCompleto; }
+    string getCpf() const { return cpf; }
+    int getIdade() const { return idade; }
+    bool getCasado() const { return estadoCivil; }
+    double getHeight() const { return altura; }
+    double getWeight() const { return peso; }
+    double getIncome() const { return renda; }
+
+    double calcularIMC() const
+    {
+        if (altura == 0) return 0;
+        return peso / (altura * altura);
+    }
 };
 
-void mostrarMenu(), opcao1(cidadaos pessoas[], int &cadastros), opcao2(cidadaos pessoas[], int cadastros), opcao3(), opcao4(), opcaoInvalida(), opcao0(), retornarMenu();
+
+void mostrarMenu(), opcao1(cidadaos pessoas[], int &cadastros), opcao2(cidadaos pessoas[], int cadastros), opcao3(cidadaos pessoas[], int cadastros), opcao4(cidadaos pessoas[], int cadastros), opcaoInvalida(), opcao0(), retornarMenu();
 
 int main()
 {
@@ -49,11 +78,13 @@ int main()
             opcao2(pessoas, cadastros);
             break;
         case 3:
-            opcao3();
+            opcao3(pessoas, cadastros);
             break;
+
         case 4:
-            opcao4();
+            opcao4(pessoas, cadastros);
             break;
+
         case 0:
             opcao0();
             break;
@@ -252,20 +283,90 @@ void opcao2(cidadaos pessoas[], int cadastros)
 }
 
 
-    
-
-
-void opcao3()
+void opcao3(cidadaos pessoas[], int cadastros)
 {
-    cout << "Vc escolheu a opcao 3" << endl;
+    if (cadastros == 0)
+    {
+        cout << "Nenhuma pessoa cadastrada." << endl;
+        retornarMenu();
+        return;
+    }
+
+    double somaIdade = 0, somaRenda = 0, somaAltura = 0, somaPeso = 0;
+
+    for (int i = 0; i < cadastros; i++)
+    {
+        somaIdade += pessoas[i].getIdade();
+        somaRenda += pessoas[i].getIncome();
+        somaAltura += pessoas[i].getHeight();
+        somaPeso += pessoas[i].getWeight();
+    }
+
+    double mediaIdade = somaIdade / cadastros;
+    double mediaRenda = somaRenda / cadastros;
+    double mediaAltura = somaAltura / cadastros;
+    double mediaPeso = somaPeso / cadastros;
+
+    double dpIdade = 0, dpRenda = 0, dpAltura = 0, dpPeso = 0;
+
+    for (int i = 0; i < cadastros; i++)
+    {
+        dpIdade += pow(pessoas[i].getIdade() - mediaIdade, 2);
+        dpRenda += pow(pessoas[i].getIncome() - mediaRenda, 2);
+        dpAltura += pow(pessoas[i].getHeight() - mediaAltura, 2);
+        dpPeso += pow(pessoas[i].getWeight() - mediaPeso, 2);
+    }
+
+    dpIdade = sqrt(dpIdade / cadastros);
+    dpRenda = sqrt(dpRenda / cadastros);
+    dpAltura = sqrt(dpAltura / cadastros);
+    dpPeso = sqrt(dpPeso / cadastros);
+
+    cout << endl << "===== MEDIAS =====" << endl;
+    cout << "Idade: " << mediaIdade << endl;
+    cout << "Renda: " << mediaRenda << endl;
+    cout << "Altura: " << mediaAltura << endl;
+    cout << "Peso: " << mediaPeso << endl;
+
+    cout << endl << "===== DESVIO PADRAO =====" << endl;
+    cout << "Idade: " << dpIdade << endl;
+    cout << "Renda: " << dpRenda << endl;
+    cout << "Altura: " << dpAltura << endl;
+    cout << "Peso: " << dpPeso << endl;
+
     retornarMenu();
 }
 
-void opcao4()
+
+void opcao4(cidadaos pessoas[], int cadastros)
 {
-    cout << "Vc escolheu a opcao 4" << endl;
+    if (cadastros == 0)
+    {
+        cout << "Nenhuma pessoa cadastrada." << endl;
+        retornarMenu();
+        return;
+    }
+
+    cout << endl << "===== IMC =====" << endl;
+
+    for (int i = 0; i < cadastros; i++)
+    {
+        double imc = pessoas[i].calcularIMC();
+
+        cout << i + 1 << " - " << pessoas[i].getNome()
+             << " | IMC: " << imc;
+
+        if (imc >= 30)
+            cout << " | Obeso";
+        else
+            cout << " | Nao obeso";
+
+        cout << endl;
+    }
+
     retornarMenu();
 }
+
 
 void opcao0()
 {
@@ -282,7 +383,6 @@ void mostrarMenu()
          << "(4) Calculo de IMC" << endl
          << "(0) Sair do programa" << endl;
 }
-
 
 void opcaoInvalida()
 {
