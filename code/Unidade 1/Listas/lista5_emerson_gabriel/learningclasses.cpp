@@ -43,7 +43,7 @@ myClass myObj;
 
 cout << myObj.myNum << endl << myObj.myString;
 
-//test
+
 return 0;
 }
 
