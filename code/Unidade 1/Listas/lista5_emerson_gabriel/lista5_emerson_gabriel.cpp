@@ -72,7 +72,7 @@ void opcaoInvalida();
 void opcao0();
 void retornarMenu();
 
-// Função auxiliar para validar CPF
+
 bool validarCPF(const string& cpf)
 {
     if(cpf.length() != 11) return false;
