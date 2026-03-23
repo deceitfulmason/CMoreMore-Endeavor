@@ -137,7 +137,7 @@ void opcao1(cidadaos pessoas[], int &cadastros)
 
     for (int i = 0; i < quantidade; i++)
     {
-        cin.ignore(); 
+        cin.ignore();
 
         string nome;
         cout << "Digite o nome completo da pessoa " << cadastros + 1 << ": ";
